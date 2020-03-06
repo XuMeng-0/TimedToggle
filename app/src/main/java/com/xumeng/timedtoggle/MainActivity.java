@@ -95,8 +95,8 @@ public class MainActivity extends AppCompatActivity {
             return;
         }
 
-        alarmManager.setExact(alarmManager.RTC_WAKEUP, timestampStart, createPendingIntent1());
-        alarmManager.setExact(alarmManager.RTC_WAKEUP, timestampEnd, createPendingIntent2());
+        alarmManager.setExact(AlarmManager.RTC_WAKEUP, timestampStart, createPendingIntent1());
+        alarmManager.setExact(AlarmManager.RTC_WAKEUP, timestampEnd, createPendingIntent2());
 
         Toast.makeText(this,"启动成功",Toast.LENGTH_SHORT).show();
     }
@@ -133,6 +133,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if(requestCode == 0 && resultCode == 0){
+            if(data == null){
+                return;
+            }
             String time = data.getExtras().getString("time");
 
             Date date = new Date();
