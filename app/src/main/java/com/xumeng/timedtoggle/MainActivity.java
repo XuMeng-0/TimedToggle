@@ -28,8 +28,6 @@ public class MainActivity extends AppCompatActivity {
 
     private AlarmManager alarmManager;
 
-    private PendingIntent pendingIntent;
-
     private Date date;
 
     private boolean isStartTime = true;
@@ -41,21 +39,21 @@ public class MainActivity extends AppCompatActivity {
     private View.OnClickListener listener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            switch (v.getId()){
-                case R.id.startButton :{
+            switch (v.getId()) {
+                case R.id.startButton: {
                     setAlarm();
                 }
                 break;
-                case R.id.endButton :{
+                case R.id.endButton: {
                     cancelAlarm();
                 }
                 break;
-                case R.id.startTime :{
+                case R.id.startTime: {
                     isStartTime = true;
                     pickTime();
                 }
                 break;
-                case R.id.endTime :{
+                case R.id.endTime: {
                     isStartTime = false;
                     pickTime();
                 }
@@ -84,47 +82,47 @@ public class MainActivity extends AppCompatActivity {
         endTimeTextView.setOnClickListener(listener);
     }
 
-    private void setAlarm(){
+    private void setAlarm() {
         alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
 
-        Log.i("MainActivity",String.valueOf(timestampStart));
+        Log.i("MainActivity", String.valueOf(timestampStart));
         Log.i("MainActivity", String.valueOf(timestampEnd));
 
-        if(timestampStart < 0 || timestampEnd < 0){
-            Toast.makeText(this,"请选择时间段", Toast.LENGTH_SHORT).show();
+        if (timestampStart < 0 || timestampEnd < 0) {
+            Toast.makeText(this, "请选择时间段", Toast.LENGTH_SHORT).show();
             return;
         }
 
         alarmManager.setExact(AlarmManager.RTC_WAKEUP, timestampStart, createPendingIntent1());
         alarmManager.setExact(AlarmManager.RTC_WAKEUP, timestampEnd, createPendingIntent2());
 
-        Toast.makeText(this,"启动成功",Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "启动成功", Toast.LENGTH_SHORT).show();
     }
 
-    private void cancelAlarm(){
+    private void cancelAlarm() {
         alarmManager.cancel(createPendingIntent1());
         alarmManager.cancel(createPendingIntent2());
-        Toast.makeText(this,"关闭成功",Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "关闭成功", Toast.LENGTH_SHORT).show();
     }
 
-    private PendingIntent createPendingIntent1(){
+    private PendingIntent createPendingIntent1() {
         Intent intent = new Intent(this, StartReceiver.class);
         intent.setAction("timedStart");
         return PendingIntent.getBroadcast(this, 1, intent,
                 PendingIntent.FLAG_CANCEL_CURRENT);
     }
 
-    private PendingIntent createPendingIntent2(){
+    private PendingIntent createPendingIntent2() {
         Intent intent = new Intent(this, EndReceiver.class);
         intent.setAction("timedEnd");
         return PendingIntent.getBroadcast(this, 2, intent,
                 PendingIntent.FLAG_CANCEL_CURRENT);
     }
 
-    private void pickTime(){
+    private void pickTime() {
         date = new Date();
         Intent intent = new Intent();
-        intent.putExtra("time",date);
+        intent.putExtra("time", date);
         intent.setClass(this, TimePickerActivity.class);
         startActivityForResult(intent, 0);
     }
@@ -132,29 +130,27 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode == 0 && resultCode == 0){
-            if(data == null){
+        if (requestCode == 0 && resultCode == 0) {
+            if (data == null) {
                 return;
             }
             String time = data.getExtras().getString("time");
 
-            Date date = new Date();
             SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy:MM:dd:HH:mm");
-            String date1 = simpleDateFormat.format(date);
-            String[] dateStringArray = date1.split(":");
+            String dateString = simpleDateFormat.format(date);
+            String[] dateStringArray = dateString.split(":");
             dateStringArray[3] = time.split(":")[0];
             dateStringArray[4] = time.split(":")[1];
-            date1 = dateStringArray[0] + ":" + dateStringArray[1] + ":" + dateStringArray[2] + ":" +
+            dateString = dateStringArray[0] + ":" + dateStringArray[1] + ":" + dateStringArray[2] + ":" +
                     dateStringArray[3] + ":" + dateStringArray[4];
 
             try {
-                date = simpleDateFormat.parse(date1);
-                Log.i("MainActivity",date.toString());
-
-                if(isStartTime){
+                date = simpleDateFormat.parse(dateString);
+                //Log.i("MainActivity",date.toString());
+                if (isStartTime) {
                     startTimeTextView.setText(time);
                     timestampStart = date.getTime();
-                }else{
+                } else {
                     endTimeTextView.setText(time);
                     timestampEnd = date.getTime();
                 }

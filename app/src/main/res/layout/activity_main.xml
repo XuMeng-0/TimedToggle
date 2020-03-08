@@ -1,51 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".MainActivity">
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="开始时间："
-            android:textSize="30sp"
-            />
+            android:textSize="30sp" />
+
         <TextView
             android:id="@+id/startTime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="30sp"
-            />
+            android:textSize="30sp" />
     </LinearLayout>
 
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="结束时间："
-            android:textSize="30sp"
-            />
+            android:textSize="30sp" />
+
         <TextView
             android:id="@+id/endTime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="30sp"
-            />
+            android:textSize="30sp" />
     </LinearLayout>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="重复频率"
-        android:textSize="30sp"/>
+        android:textSize="30sp" />
+
     <GridLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -54,64 +55,70 @@
         <ToggleButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textOn="1ON"
             android:textOff="1OFF"
-            android:textSize="30sp"/>
+            android:textOn="1ON"
+            android:textSize="30sp" />
+
         <ToggleButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textOn="2ON"
             android:textOff="2OFF"
-            android:textSize="30sp"/>
+            android:textOn="2ON"
+            android:textSize="30sp" />
+
         <ToggleButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textOn="3ON"
             android:textOff="3OFF"
-            android:textSize="30sp"/>
+            android:textOn="3ON"
+            android:textSize="30sp" />
+
         <ToggleButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textOn="4ON"
             android:textOff="4OFF"
-            android:textSize="30sp"/>
+            android:textOn="4ON"
+            android:textSize="30sp" />
+
         <ToggleButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textOn="5ON"
             android:textOff="5OFF"
-            android:textSize="30sp"/>
+            android:textOn="5ON"
+            android:textSize="30sp" />
+
         <ToggleButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textOn="6ON"
             android:textOff="6OFF"
-            android:textSize="30sp"/>
+            android:textOn="6ON"
+            android:textSize="30sp" />
+
         <ToggleButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textOn="7ON"
             android:textOff="7OFF"
-            android:textSize="30sp"/>
+            android:textOn="7ON"
+            android:textSize="30sp" />
     </GridLayout>
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
-    <Button
-        android:id="@+id/startButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="启动"
-        android:textSize="30sp"/>
+        <Button
+            android:id="@+id/startButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="启动"
+            android:textSize="30sp" />
 
-    <Button
-        android:id="@+id/endButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="关闭"
-        android:textSize="30sp"/>
+        <Button
+            android:id="@+id/endButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="关闭"
+            android:textSize="30sp" />
     </LinearLayout>
 
 </LinearLayout>

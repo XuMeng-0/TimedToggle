@@ -31,7 +31,7 @@ public class TimePickerActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent();
-                intent.putExtra("time",time);
+                intent.putExtra("time", time);
                 setResult(0, intent);
                 finish();
             }
