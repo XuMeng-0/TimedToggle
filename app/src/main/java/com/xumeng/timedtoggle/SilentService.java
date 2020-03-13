@@ -34,7 +34,7 @@ public class SilentService extends IntentService {
                             .show();
                 }
             });
-            Log.i("NormalService", "切换为静音模式");
+            Log.i("SilentService", "切换为静音模式");
         }
     }
 

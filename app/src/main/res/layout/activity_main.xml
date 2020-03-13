@@ -53,6 +53,7 @@
         android:columnCount="4">
 
         <ToggleButton
+            android:id="@+id/Monday"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textOff="1OFF"
@@ -60,6 +61,7 @@
             android:textSize="30sp" />
 
         <ToggleButton
+            android:id="@+id/Tuesday"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textOff="2OFF"
@@ -67,6 +69,7 @@
             android:textSize="30sp" />
 
         <ToggleButton
+            android:id="@+id/Wednesday"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textOff="3OFF"
@@ -74,6 +77,7 @@
             android:textSize="30sp" />
 
         <ToggleButton
+            android:id="@+id/Thursday"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textOff="4OFF"
@@ -81,6 +85,7 @@
             android:textSize="30sp" />
 
         <ToggleButton
+            android:id="@+id/Friday"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textOff="5OFF"
@@ -88,6 +93,7 @@
             android:textSize="30sp" />
 
         <ToggleButton
+            android:id="@+id/Saturday"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textOff="6OFF"
@@ -95,6 +101,7 @@
             android:textSize="30sp" />
 
         <ToggleButton
+            android:id="@+id/Sunday"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textOff="7OFF"
