@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
 
     private long timestampEnd = -1;
 
-    private View.OnClickListener listener = new View.OnClickListener() {
+    private View.OnClickListener onClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
             switch (v.getId()) {
@@ -64,82 +64,82 @@ public class MainActivity extends AppCompatActivity {
 
     private CompoundButton.OnCheckedChangeListener onCheckedChangeListener = new
             CompoundButton.OnCheckedChangeListener() {
-        @Override
-        public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-            switch (buttonView.getId()){
-                case R.id.Monday :{
-                    if(isChecked){
-                        Log.i("MainActivity","1 checked");
-                        toggleButtonsIsChecked[0] = true;
-                    }else{
-                        Log.i("MainActivity","1 unchecked");
-                        toggleButtonsIsChecked[0] = false;
+                @Override
+                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    switch (buttonView.getId()) {
+                        case R.id.Monday: {
+                            if (isChecked) {
+                                Log.i("MainActivity", "1 checked");
+                                toggleButtonsIsChecked[0] = true;
+                            } else {
+                                Log.i("MainActivity", "1 unchecked");
+                                toggleButtonsIsChecked[0] = false;
+                            }
+                        }
+                        break;
+                        case R.id.Tuesday: {
+                            if (isChecked) {
+                                Log.i("MainActivity", "2 checked");
+                                toggleButtonsIsChecked[1] = true;
+                            } else {
+                                Log.i("MainActivity", "2 unchecked");
+                                toggleButtonsIsChecked[1] = false;
+                            }
+                        }
+                        break;
+                        case R.id.Wednesday: {
+                            if (isChecked) {
+                                Log.i("MainActivity", "3 checked");
+                                toggleButtonsIsChecked[2] = true;
+                            } else {
+                                Log.i("MainActivity", "3 unchecked");
+                                toggleButtonsIsChecked[2] = false;
+                            }
+                        }
+                        break;
+                        case R.id.Thursday: {
+                            if (isChecked) {
+                                Log.i("MainActivity", "4 checked");
+                                toggleButtonsIsChecked[3] = true;
+                            } else {
+                                Log.i("MainActivity", "4 unchecked");
+                                toggleButtonsIsChecked[3] = false;
+                            }
+                        }
+                        break;
+                        case R.id.Friday: {
+                            if (isChecked) {
+                                Log.i("MainActivity", "5 checked");
+                                toggleButtonsIsChecked[4] = true;
+                            } else {
+                                Log.i("MainActivity", "5 unchecked");
+                                toggleButtonsIsChecked[4] = false;
+                            }
+                        }
+                        break;
+                        case R.id.Saturday: {
+                            if (isChecked) {
+                                Log.i("MainActivity", "6 checked");
+                                toggleButtonsIsChecked[5] = true;
+                            } else {
+                                Log.i("MainActivity", "6 unchecked");
+                                toggleButtonsIsChecked[5] = false;
+                            }
+                        }
+                        break;
+                        case R.id.Sunday: {
+                            if (isChecked) {
+                                Log.i("MainActivity", "7 chcecked");
+                                toggleButtonsIsChecked[6] = true;
+                            } else {
+                                Log.i("MainActivity", "7 unchecked");
+                                toggleButtonsIsChecked[6] = false;
+                            }
+                        }
+                        break;
                     }
                 }
-                break;
-                case R.id.Tuesday :{
-                    if(isChecked){
-                        Log.i("MainActivity","2 checked");
-                        toggleButtonsIsChecked[1] = true;
-                    }else{
-                        Log.i("MainActivity","2 unchecked");
-                        toggleButtonsIsChecked[1] = false;
-                    }
-                }
-                break;
-                case R.id.Wednesday :{
-                    if(isChecked){
-                        Log.i("MainActivity","3 checked");
-                        toggleButtonsIsChecked[2] = true;
-                    }else{
-                        Log.i("MainActivity","3 unchecked");
-                        toggleButtonsIsChecked[2] = false;
-                    }
-                }
-                break;
-                case R.id.Thursday :{
-                    if(isChecked){
-                        Log.i("MainActivity","4 checked");
-                        toggleButtonsIsChecked[3] = true;
-                    }else{
-                        Log.i("MainActivity","4 unchecked");
-                        toggleButtonsIsChecked[3] = false;
-                    }
-                }
-                break;
-                case R.id.Friday :{
-                    if(isChecked){
-                        Log.i("MainActivity","5 checked");
-                        toggleButtonsIsChecked[4] = true;
-                    }else{
-                        Log.i("MainActivity","5 unchecked");
-                        toggleButtonsIsChecked[4] = false;
-                    }
-                }
-                break;
-                case R.id.Saturday :{
-                    if(isChecked){
-                        Log.i("MainActivity","6 checked");
-                        toggleButtonsIsChecked[5] = true;
-                    }else{
-                        Log.i("MainActivity","6 unchecked");
-                        toggleButtonsIsChecked[5] = false;
-                    }
-                }
-                break;
-                case R.id.Sunday :{
-                    if(isChecked){
-                        Log.i("MainActivity","7 chcecked");
-                        toggleButtonsIsChecked[6] = true;
-                    }else{
-                        Log.i("MainActivity","7 unchecked");
-                        toggleButtonsIsChecked[6] = false;
-                    }
-                }
-                break;
-            }
-        }
-    };
+            };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -148,11 +148,11 @@ public class MainActivity extends AppCompatActivity {
 
         startTimeTextView = findViewById(R.id.startTime);
         startTimeTextView.setText("请点此选择时间");
-        startTimeTextView.setOnClickListener(listener);
+        startTimeTextView.setOnClickListener(onClickListener);
 
         endTimeTextView = findViewById(R.id.endTime);
         endTimeTextView.setText("请点此选择时间");
-        endTimeTextView.setOnClickListener(listener);
+        endTimeTextView.setOnClickListener(onClickListener);
 
         ToggleButton[] toggleButtons = new ToggleButton[7];
         toggleButtons[0] = findViewById(R.id.Monday);
@@ -162,17 +162,17 @@ public class MainActivity extends AppCompatActivity {
         toggleButtons[4] = findViewById(R.id.Friday);
         toggleButtons[5] = findViewById(R.id.Saturday);
         toggleButtons[6] = findViewById(R.id.Sunday);
-        for(ToggleButton toggleButton : toggleButtons){
+        for (ToggleButton toggleButton : toggleButtons) {
             toggleButton.setOnCheckedChangeListener(onCheckedChangeListener);
         }
 
         toggleButtonsIsChecked = new boolean[7];
 
         Button startButton = findViewById(R.id.startButton);
-        startButton.setOnClickListener(listener);
+        startButton.setOnClickListener(onClickListener);
 
         Button endButton = findViewById(R.id.endButton);
-        endButton.setOnClickListener(listener);
+        endButton.setOnClickListener(onClickListener);
     }
 
     private void setAlarm() {
@@ -239,10 +239,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //计算定时任务启动时间
-    private long computeTime(String time){
+    private long computeTime(String time) {
         Log.i("MainActivity", time);
-        Log.i("MainActivity","weekChecked:");
-        for(boolean isChecked : toggleButtonsIsChecked){
+        Log.i("MainActivity", "weekChecked:");
+        for (boolean isChecked : toggleButtonsIsChecked) {
             Log.i("MainActivity", String.valueOf(isChecked));
         }
         long timeAtMillis;
@@ -256,68 +256,67 @@ public class MainActivity extends AppCompatActivity {
         Log.i("MainActivity", dateString);
         try {
             timeAtMillis = simpleDateFormat.parse(dateString).getTime();
-            if(!toggleButtonsIsCheckedContainsTrue()){
-                Log.i("MainActivity",String.valueOf(timeAtMillis));
-                return timeAtMillis;
-            }else{
-                //获取当前星期几
-                String weekDayString = dateStringArray[5];
-                int weekday = -1;
-                switch (weekDayString){
-                    case "Monday":{
-                        weekday = 0;
-                    }
-                    break;
-                    case "Tuesday":{
-                        weekday = 1;
-                    }
-                    break;
-                    case "Wednesday" :{
-                        weekday = 2;
-                    }
-                    break;
-                    case "Thursday" :{
-                        weekday = 3;
-                    }
-                    break;
-                    case "Friday" :{
-                        weekday = 4;
-                    }
-                    break;
-                    case "Saturday" :{
-                        weekday = 5;
-                    }
-                    break;
-                    case "Sunday" :{
-                        weekday = 6;
-                    }
-                    break;
-                }
-                Log.i("MainActivity", String.valueOf(weekday));
-                //如果当前星期数选中，不做
-                if(toggleButtonsIsChecked[weekday]){
-                    Log.i("MainActivity",String.valueOf(timeAtMillis));
-                    return timeAtMillis;
-                }
-                //time+1天，判断下一个星期数是否选中，选中返回，否则继续，直到当前星期数的前一天
-                int temp = weekday;
-                do {
-                    temp = (temp + 1) % 7;
-                    timeAtMillis += 24 * 3600 * 1000;
-                    Log.i("MainActivity","+24h");
-                } while (!toggleButtonsIsChecked[temp]);
+            if (!toggleButtonsIsCheckedContainsTrue()) {
                 Log.i("MainActivity", String.valueOf(timeAtMillis));
                 return timeAtMillis;
             }
+            //获取当前星期几
+            String weekDayString = dateStringArray[5];
+            int weekday = -1;
+            switch (weekDayString) {
+                case "Monday": {
+                    weekday = 0;
+                }
+                break;
+                case "Tuesday": {
+                    weekday = 1;
+                }
+                break;
+                case "Wednesday": {
+                    weekday = 2;
+                }
+                break;
+                case "Thursday": {
+                    weekday = 3;
+                }
+                break;
+                case "Friday": {
+                    weekday = 4;
+                }
+                break;
+                case "Saturday": {
+                    weekday = 5;
+                }
+                break;
+                case "Sunday": {
+                    weekday = 6;
+                }
+                break;
+            }
+            Log.i("MainActivity", String.valueOf(weekday));
+            //如果当前星期数选中，不修正
+            if (toggleButtonsIsChecked[weekday]) {
+                Log.i("MainActivity", String.valueOf(timeAtMillis));
+                return timeAtMillis;
+            }
+            //判断下一个星期数是否选中，选中则修正并返回，否则继续，直到当前星期数的前一天
+            int temp = weekday;
+            do {
+                temp = (temp + 1) % 7;
+                timeAtMillis += 24 * 3600 * 1000;
+                Log.i("MainActivity", "+24h");
+            } while (!toggleButtonsIsChecked[temp]);
+            Log.i("MainActivity", String.valueOf(timeAtMillis));
+            return timeAtMillis;
         } catch (ParseException e) {
             e.printStackTrace();
         }
         return -1;
     }
 
-    private boolean toggleButtonsIsCheckedContainsTrue(){
-        for(boolean isChecked : toggleButtonsIsChecked){
-            if(isChecked){
+    private boolean toggleButtonsIsCheckedContainsTrue() {
+        for (boolean isChecked : toggleButtonsIsChecked) {
+            if (isChecked) {
                 return true;
             }
         }
