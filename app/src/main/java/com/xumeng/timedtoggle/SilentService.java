@@ -45,8 +45,11 @@ public class SilentService extends IntentService {
         intent.setAction("timedStart");
         PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 1, intent,
                 PendingIntent.FLAG_CANCEL_CURRENT);
+
         long timestamp = System.currentTimeMillis() + 1000 * 3600 * 24;
         alarmManager.setExact(AlarmManager.RTC_WAKEUP, timestamp, pendingIntent);
         Log.i("SilentService", "定时置为静音模式任务已经设置完成");
     }
+
+
 }
