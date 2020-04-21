@@ -32,9 +32,9 @@ public class MainActivity extends AppCompatActivity {
 
     private boolean isStartTime = true;
 
-    private long timestampStart = -1;
+    private String timeStart = "";
 
-    private long timestampEnd = -1;
+    private String timeEnd = "";
 
     private View.OnClickListener onClickListener = new View.OnClickListener() {
         @Override
@@ -178,13 +178,17 @@ public class MainActivity extends AppCompatActivity {
     private void setAlarm() {
         alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
 
-        Log.i("MainActivity", String.valueOf(timestampStart));
-        Log.i("MainActivity", String.valueOf(timestampEnd));
-
-        if (timestampStart < 0 || timestampEnd < 0) {
+        //计算时间
+        if (timeStart.equals("") || timeEnd.equals("")) {
             Toast.makeText(this, "请选择时间段", Toast.LENGTH_SHORT).show();
             return;
         }
+
+        long timestampStart = computeTime(timeStart);
+        long timestampEnd = computeTime(timeEnd);
+
+        Log.i("MainActivity", String.valueOf(timestampStart));
+        Log.i("MainActivity", String.valueOf(timestampEnd));
 
         alarmManager.setExact(AlarmManager.RTC_WAKEUP, timestampStart, createPendingIntent1());
         alarmManager.setExact(AlarmManager.RTC_WAKEUP, timestampEnd, createPendingIntent2());
@@ -230,10 +234,10 @@ public class MainActivity extends AppCompatActivity {
             String time = data.getExtras().getString("time");
             if (isStartTime) {
                 startTimeTextView.setText(time);
-                timestampStart = computeTime(time);
+                timeStart = time;
             } else {
                 endTimeTextView.setText(time);
-                timestampEnd = computeTime(time);
+                timeEnd = time;
             }
         }
     }
