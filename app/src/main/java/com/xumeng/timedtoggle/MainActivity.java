@@ -175,13 +175,14 @@ public class MainActivity extends AppCompatActivity {
             return;
         }
 
-        long timestampStart = TimedUtil.computeTime(timeStart);
-        long timestampEnd = TimedUtil.computeTime(timeEnd);
+        long timestampStart = TimedUtil.computeTime(timeStart, true);
+        long timestampEnd = TimedUtil.computeTime(timeEnd, false);
 
         if (timestampStart == -1L || timestampEnd == -1L) {
+            Toast.makeText(this, "启动失败，所选时间段无效", Toast.LENGTH_SHORT).show();
             return;
         }
-
+        Log.i("MainActivity", String.valueOf(System.currentTimeMillis()));
         Log.i("MainActivity", String.valueOf(timestampStart));
         Log.i("MainActivity", String.valueOf(timestampEnd));
 

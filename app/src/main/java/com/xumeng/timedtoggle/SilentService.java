@@ -24,6 +24,7 @@ public class SilentService extends IntentService {
     private void silent() {
         AudioManager audioManager = (AudioManager) getSystemService(AUDIO_SERVICE);
         if (audioManager != null) {
+            Log.i("currentTime", String.valueOf(System.currentTimeMillis()));
             audioManager.setRingerMode(AudioManager.RINGER_MODE_SILENT);
 
             Handler handler = new Handler(getMainLooper());
@@ -46,7 +47,18 @@ public class SilentService extends IntentService {
         PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 1, intent,
                 PendingIntent.FLAG_CANCEL_CURRENT);
 
-        long timestamp = System.currentTimeMillis() + 1000 * 3600 * 24;
+        long timestamp = TimedUtil.computeTimeAgain(true);
+        if (timestamp == -1L) {
+            Handler handler = new Handler(getMainLooper());
+            handler.post(new Runnable() {
+                @Override
+                public void run() {
+                    Toast.makeText(SilentService.this,
+                            "定时置为静音模式任务设置失败，选择的时间段无效", Toast.LENGTH_SHORT).show();
+                }
+            });
+            return;
+        }
         alarmManager.setExact(AlarmManager.RTC_WAKEUP, timestamp, pendingIntent);
         Log.i("SilentService", "定时置为静音模式任务已经设置完成");
     }
