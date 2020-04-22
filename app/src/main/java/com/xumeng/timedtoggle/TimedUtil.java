@@ -25,7 +25,7 @@ public class TimedUtil {
         if (timeAtMillis == -1L) {
             return -1L;
         }
-        if (!toggleButtonsIsCheckedContainsTrue()) {
+        if (toggleButtonsIsCheckedNotContainsTrue()) {
             Log.i("TimedUtil", String.valueOf(timeAtMillis));
             return timeAtMillis;
         }
@@ -91,7 +91,7 @@ public class TimedUtil {
         if (timeAtMillis == -1L) {
             return -1L;
         }
-        if (!toggleButtonsIsCheckedContainsTrue()) {
+        if (toggleButtonsIsCheckedNotContainsTrue()) {
             Log.i("TimedUtil", String.valueOf(timeAtMillis));
             return timeAtMillis;
         }
@@ -145,13 +145,13 @@ public class TimedUtil {
         return timeAtMillis;
     }
 
-    private static boolean toggleButtonsIsCheckedContainsTrue() {
+    private static boolean toggleButtonsIsCheckedNotContainsTrue() {
         for (boolean isChecked : toggleButtonsIsChecked) {
             if (isChecked) {
-                return true;
+                return false;
             }
         }
-        return false;
+        return true;
     }
 
     //计算不考虑重复频率情况下的触发时间
