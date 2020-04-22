@@ -178,6 +178,10 @@ public class MainActivity extends AppCompatActivity {
         long timestampStart = TimedUtil.computeTime(timeStart);
         long timestampEnd = TimedUtil.computeTime(timeEnd);
 
+        if (timestampStart == -1L || timestampEnd == -1L) {
+            return;
+        }
+
         Log.i("MainActivity", String.valueOf(timestampStart));
         Log.i("MainActivity", String.valueOf(timestampEnd));
 
