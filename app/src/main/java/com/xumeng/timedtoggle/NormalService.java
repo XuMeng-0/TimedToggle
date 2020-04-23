@@ -19,7 +19,10 @@ public class NormalService extends IntentService {
     @Override
     protected void onHandleIntent(Intent intent) {
         normal();
-        resetTimedNormal();
+        /*如果用户选择了重复频率，设置下一次定时任务*/
+        if (!TimedUtil.toggleButtonsIsCheckedNotContainsTrue()) {
+            resetTimedNormal();
+        }
     }
 
     private void normal() {

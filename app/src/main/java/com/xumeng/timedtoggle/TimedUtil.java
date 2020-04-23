@@ -36,10 +36,18 @@ public class TimedUtil {
         if (timeAtMillis == -1L) {
             return -1L;
         }
+
+        /*不重复*/
         if (toggleButtonsIsCheckedNotContainsTrue()) {
+            /*如果设置的触发时刻早于现在，将触发时刻修正为下一天的这一时刻*/
+            if (timeAtMillis < System.currentTimeMillis()) {
+                timeAtMillis += 24 * 3600 * 1000;
+            }
             Log.i("TimedUtil", String.valueOf(timeAtMillis));
             return timeAtMillis;
         }
+
+        /*重复*/
         //计算当前星期几
         String weekDayString = dateStringArray[5];
         int weekday = -1;
@@ -74,13 +82,23 @@ public class TimedUtil {
             break;
         }
         Log.i("TimedUtil", String.valueOf(weekday));
-        //如果当前星期数选中，不修正
+        /*如果当前星期数选中*/
+        int temp = weekday;
         if (toggleButtonsIsChecked[weekday]) {
+            /*如果设置的触发时刻早于现在，将触发时刻修正为下一个选中日期的这一时刻*/
+            if (timeAtMillis < System.currentTimeMillis()) {
+                do {
+                    temp = (temp + 1) % 7;
+                    timeAtMillis += 24 * 3600 * 1000;
+                    Log.i("TimedUtil", "+24h");
+                } while (!toggleButtonsIsChecked[temp]);
+            }
             Log.i("TimedUtil", String.valueOf(timeAtMillis));
             return timeAtMillis;
         }
-        //判断下一个星期数是否选中，选中则修正并返回，否则继续，直到当前星期数的前一天
-        int temp = weekday;
+        /*如果当前星期数未选中*/
+        /*判断下一个星期数是否选中，选中则修正并返回，否则继续，直到第一个选中选中星期数为止*/
+        temp = weekday;
         do {
             temp = (temp + 1) % 7;
             timeAtMillis += 24 * 3600 * 1000;
@@ -118,7 +136,7 @@ public class TimedUtil {
 
         int weekday = computeTodaySequenceInWeek();
 
-        //判断下一个星期数是否选中，选中则修正并返回，否则继续，直到下一个当前星期数
+        /*判断下一个星期数是否选中，选中则修正并返回，否则继续，直到第一个选中星期数为止*/
         do {
             weekday = (weekday + 1) % 7;
             timeAtMillis += 24 * 3600 * 1000;
@@ -128,8 +146,8 @@ public class TimedUtil {
         return timeAtMillis;
     }
 
-    //判断开关按钮的状态是否全部为“关闭”,即用户是否选择了重复频率
-    private static boolean toggleButtonsIsCheckedNotContainsTrue() {
+    //判断开关按钮的状态是否全部为“关闭”,即用户是否选择了重复频率，选择为false，未选择为true
+    static boolean toggleButtonsIsCheckedNotContainsTrue() {
         for (boolean isChecked : toggleButtonsIsChecked) {
             if (isChecked) {
                 return false;
